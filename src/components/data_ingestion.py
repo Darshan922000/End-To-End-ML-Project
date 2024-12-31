@@ -5,13 +5,8 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from src.logger import logging
 from src.exception import CustomException
-
-@dataclass   # use it only when we need to add only parameter...if want to add functions go with the full mode...!!!
-class DataIngestionConfig:
-    train_data_path: str = os.path.join("data storage", "train.csv")
-    test_data_path: str = os.path.join("data storage", "test.csv")
-    raw_data_path: str = os.path.join("data storage", "data.csv")
-
+from src.components.config_entity import DataIngestionConfig
+from src.components.data_transformation import DataTransformation
 
 class DataIngestion:
     def __init__(self):
@@ -47,4 +42,7 @@ class DataIngestion:
 
 if __name__ == "__main__":
     ingestion = DataIngestion()
-    ingestion.initiate_data_ingestion()
+    train_data_path, test_data_path = ingestion.initiate_data_ingestion()
+    transformation = DataTransformation()
+    transformation.initiate_data_transformation(train_path= train_data_path, test_path=test_data_path)
+
