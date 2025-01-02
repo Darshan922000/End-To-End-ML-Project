@@ -14,3 +14,7 @@ class DataIngestionConfig:
 class DataTransformationConfig:
     preprocessor_obj_file_path = os.path.join("data storage", "preprocessor.pkl")  #processor will apply scaling and encoding on num and cat feature...
 
+
+@dataclass
+class ModelTrainerConfig:
+    trained_model_file_path = os.path.join("data storage", "model.pkl")
