@@ -148,8 +148,8 @@ def predict(data: Annotated[CustomData, Form()]):
         raise CustomException(e, sys)
 
 if __name__ == "__main__":
-    uvicorn.run("application:apppplication", host="0.0.0.0", port=8000)
-    
+    uvicorn.run("application:application", host="0.0.0.0", port=8000)
+
 
 
 
