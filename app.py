@@ -11,7 +11,7 @@ from src.pipeline.prediction_pipeline import PredictPipeline
 from src.exception import CustomException
 from src.logger import logging
 
-application = FastAPI()
+app = FastAPI()
 
 class Gender(str, Enum):
     male = "male"
@@ -129,11 +129,11 @@ class CustomData(BaseModel):
             raise CustomException(e,sys)
 
 
-@application.get("/")
+@app.get("/")
 def root():
     return 'Welcome to End-To-End ML Project....(:'
 
-@application.post("/predict/")
+@app.post("/predict/")
 def predict(data: Annotated[CustomData, Form()]):
     try:
         pred_pipeline = PredictPipeline()
@@ -148,7 +148,7 @@ def predict(data: Annotated[CustomData, Form()]):
         raise CustomException(e, sys)
 
 if __name__ == "__main__":
-    uvicorn.run("application:application", host="0.0.0.0", port=8000)
+    uvicorn.run("app:app", host="0.0.0.0", port=8000)
 
 
 
