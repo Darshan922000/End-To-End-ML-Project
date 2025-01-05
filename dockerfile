@@ -14,6 +14,9 @@ COPY . .
 # Install Poetry (if using Poetry to manage pyproject.toml)
 RUN pip install poetry
 
+# Configure Poetry to Avoid Virtual Environments..all dependencies install globally not in virtual environment..
+RUN poetry config virtualenvs.create false
+
 # Install dependencies from pyproject.toml
 RUN poetry install --no-root
 
@@ -22,5 +25,3 @@ EXPOSE 8000
 
 # Default command: run FastAPI
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
-
-
